@@ -6,13 +6,18 @@ USE `gdb023`;
 
 -- Request 1. Provide the list of markets in which customer "Atliq Exclusive" operates its business in the APAC region.
 
-SELECT DISTINCT
 
-    (market) AS Atliq_Exclusive_Operating_Markets
+SELECT DISTINCT(market) AS Atliq_Exclusive_Operating_Markets
     
 FROM
+
+
     dim_customer
+    
+    
 WHERE
+
+
     customer = 'Atliq Exclusive'
         AND region = 'apac'
 ORDER BY Atliq_Exclusive_Operating_Markets;
