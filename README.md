@@ -20,34 +20,57 @@ WHERE
 
     customer = 'Atliq Exclusive'
         AND region = 'apac'
+        
+        
 ORDER BY Atliq_Exclusive_Operating_Markets;
 
 
 -- Request 2. What is the percentage of unique product increase in 2021 vs. 2020?
 
+
 -- finding the total number of products in 2020
 
+
+
 WITH unique_2020 AS
+
+
 (
+
+
 SELECT 
     COUNT(DISTINCT (product_code)) AS unique_products_2020
+    
+    
 FROM
     fact_sales_monthly
+    
+    
 WHERE
     fiscal_year = 2020)
+    
+    
     
     -- combining the 2020 product count with 2021 and finding % increase
     
 SELECT 
+
+
     unique_products_2020,
     COUNT(DISTINCT (product_code)) AS unique_products_2021,
     ROUND((((COUNT(DISTINCT (product_code)) - unique_products_2020) / unique_products_2020) * 100),
             2) AS percentage_chg
+            
+            
 FROM
     unique_2020,
     fact_sales_monthly
+    
+    
 WHERE
     fiscal_year = 2021;
+    
+    
 
 -- Request 3. Provide a report with all the unique product counts for each segment and sort them in descending order of product counts.
 
